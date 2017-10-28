@@ -1,0 +1,9 @@
+/.vs
+/Debug
+/INIT
+/SDCard*
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+/ALCHEMY.g1A
+*.sln*

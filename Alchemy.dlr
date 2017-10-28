@@ -1,0 +1,23 @@
+[DLSimRunSpace]
+
+[Breakpoint]
+File=B:\Users\Pedro\Documents\Casio Calculators\Projects\Alchemy\String.cpp
+Line=25
+Flags=00001012
+
+[Breakpoint]
+Address=80000000:88023F84
+Count=00000014
+Name=(null):this>
+Flags=00000041
+
+[Breakpoint]
+Address=80000000:88023F94
+Count=00000004
+Name=(null):this->cStr
+Flags=00000041
+
+[Breakpoint]
+File=B:\Users\Pedro\Documents\Casio Calculators\Projects\Alchemy\String.cpp
+Line=28
+Flags=00001012
