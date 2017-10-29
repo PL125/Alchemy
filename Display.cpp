@@ -88,3 +88,14 @@ void Display::clear()
 {
 	Bdisp_AllClr_DDVRAM();
 }
+
+void Display::printStringReverse(String& str)
+{
+	PrintRev((const unsigned char*)str.getString());
+}
+
+void Display::printCharacterReverse(char chargeSign)
+{
+	char buffer[2] = { chargeSign, 0 };
+	PrintRevC((const unsigned char*)buffer);
+}

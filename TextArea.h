@@ -21,6 +21,8 @@ public:
 	void printString(String& s);
 	void printString(char* str);
 
+	void printStringReverse(String& s);
+
 	void locate() const;
 
 	void printElement(const Element& element);

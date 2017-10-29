@@ -18,5 +18,8 @@ public:
 	static void printString(String& str);
 	static void printString(char* str);
 	static void clear();
+
+	static void printStringReverse(String& str);
+	static void printCharacterReverse(char chargeSign);
 };
 

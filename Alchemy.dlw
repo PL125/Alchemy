@@ -2,7 +2,7 @@
 
 [_1]
 Type=5
-Order=2
+Order=1
 Top=3975
 Left=90
 Height=8670
@@ -14,9 +14,9 @@ OptionA=0
 
 [_2]
 Type=1
-Order=0
-Top=1080
-Left=10500
+Order=2
+Top=150
+Left=6240
 Height=10620
 Width=11520
 State=0
@@ -26,10 +26,10 @@ OptionB=15
 
 [_3]
 Type=6
-Order=4
-Top=4875
-Left=12750
-Height=7065
+Order=3
+Top=1365
+Left=17895
+Height=7080
 Width=5775
 State=0
 Flags=00000001
@@ -81,7 +81,7 @@ OptionA=0
 
 [_8]
 Type=17
-Order=3
+Order=4
 Top=-345
 Left=-15
 Height=11115
@@ -92,10 +92,10 @@ OptionA=0
 
 [_9]
 Type=15
-Order=1
-Top=3450
-Left=1950
-Height=13935
+Order=0
+Top=5070
+Left=270
+Height=16500
 Width=24030
 State=0
 Flags=00000000

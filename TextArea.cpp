@@ -70,6 +70,15 @@ void TextArea::printString(char* str)
 	printString(s);
 }
 
+void TextArea::printStringReverse(String& s)
+{
+	int length = s.getLength();
+
+	locate();
+	Display::printStringReverse(s);
+	cursorX += length;
+}
+
 void TextArea::locate() const
 {
 	Display::locate(cursorX, cursorY);

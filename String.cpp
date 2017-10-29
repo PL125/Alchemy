@@ -8,6 +8,7 @@ String::String()
 }
 
 String::String(const char* str)
+	: Vector()
 {
 	int count = 0;
 	while(str[count] != '\0')
@@ -17,6 +18,20 @@ String::String(const char* str)
 	}
 	
 	cStr = (char*)malloc(sizeof(char) * (count +  1));
+}
+
+String::String(const String& other)
+	: Vector(other)
+{
+	cStr = (char*)malloc(sizeof(char) * other.getLength() + 1);
+}
+
+String& String::operator=(const String& other)
+{
+	Vector::operator=(other);
+	cStr = (char*)realloc(cStr, sizeof(char) * (other.getSize() + 1));
+
+	return *this;
 }
 
 String::~String()

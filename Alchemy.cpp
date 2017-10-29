@@ -3,6 +3,8 @@
 #include "Element.h"
 #include "Math.h"
 #include "TextArea.h"
+#include "Input.h"
+#include "Keyboard.h"
 
 extern "C" {
 	
@@ -10,6 +12,9 @@ extern "C" {
 
 	void printInformation(Element& e, TextArea& t)
 	{
+		t.setCursor(18, 1);
+		t.printElement(e);
+
 		t.setCursor(1, 2);
 		t.printString("P:");
 		t.printNumber(e.getPeriod());
@@ -50,7 +55,6 @@ extern "C" {
 
 	int AddIn_main(int isAppli, unsigned short OptionNum)
 	{
-		unsigned int key;
 
 		Element e(86, -25);
 
@@ -58,20 +62,72 @@ extern "C" {
 		TextArea t(1, 1);
 
 		t.printString("Z:");
-		t.printNumber(e.getAtomicNumber());
 		t.setCursor(7, 1);
-		t.printString("Charge:+10");
-		t.setCursor(18, 1);
-		t.printElement(e);
+		t.printString("Charge:");
 
-		printInformation(e, t);
+		//printInformation(e, t);
 
+		Input inputZ(3, 1, 3);
+		inputZ.focus();
 
-		//Display::drawLine(0, 8, 127, 8);
-		while (1) {
+		Input chargeInput(15, 1, 2);
+		chargeInput.setDefault("0");
+		chargeInput.unfocus();
+
+		Input* focused = &inputZ;
+		char chargeSign = '+';
+
+		Display::locate(14, 1);
+		Display::printCharacter(chargeSign);
+
+		unsigned int key;
+		while (true) {
 			GetKey(&key);
-		}
 
+			KeyType::Type type = Keyboard::getKeyType(key);
+			if(type == KeyType::LeftArrow)
+			{
+				inputZ.focus();
+				chargeInput.unfocus();
+				focused = &inputZ;
+				Display::locate(14, 1);
+				Display::printCharacter(chargeSign);
+			}
+			else if(type == KeyType::RightArrow)
+			{		
+				inputZ.unfocus();
+				chargeInput.focus();
+				focused = &chargeInput;
+
+				Display::locate(14, 1);
+				Display::printCharacterReverse(chargeSign);
+			}
+			else if(key == 0x89)
+			{
+				//Plus
+				if(focused == &chargeInput)
+				{
+					chargeSign = '+';
+					Display::locate(14, 1);
+					Display::printCharacterReverse(chargeSign);
+				}
+			}
+			else if(key == 0x99)
+			{
+				//Minus
+				if (focused == &chargeInput)
+				{
+					chargeSign = '-';
+					Display::locate(14, 1);
+					Display::printCharacterReverse(chargeSign);
+				}
+			}
+			else
+			{
+				focused->onKeyPressed(key);
+			}
+
+		}
 		return 1;
 	}
 
