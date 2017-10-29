@@ -9,5 +9,7 @@ public:
 	Orbital(int level, char type, int electronNumber);
 
 	static int getMaxElectronsNumber(char type);
+	
+	int getStringLength() const;
 };
 

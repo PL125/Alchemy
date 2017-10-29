@@ -2,6 +2,7 @@
 #include "Orbital.h"
 #include "Vector.h"
 #include "String.h"
+#include "TextArea.h"
 
 class ElectronicConfiguration
 {
@@ -15,4 +16,7 @@ public:
 
 	ElectronicConfiguration(int e);
 	Orbital getLastOrbital() const;
+
+	void printReduced(TextArea& area) const;
+	void printExtended(TextArea& area) const;
 };

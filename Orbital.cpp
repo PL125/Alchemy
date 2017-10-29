@@ -1,4 +1,5 @@
 #include "Orbital.h"
+#include "String.h"
 
 Orbital::Orbital(int level, char type, int electronNumber)
  : level(level), type(type), electronNumber(electronNumber)
@@ -24,4 +25,9 @@ int Orbital::getMaxElectronsNumber(char type)
 		break;
 	}
 	return max;
+}
+
+int Orbital::getStringLength() const
+{
+	return String::fromNumber(level).getLength() + 1 + String::fromNumber(electronNumber).getLength();
 }

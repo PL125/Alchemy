@@ -6,6 +6,8 @@ class Display
 public:
 	static void locate(int x, int y);
 
+	static void drawLine(int x1, int y1, int x2, int y2);
+
 	static void printNumber(int number);
 	static void printNumber(float number, int precision = 3);
 

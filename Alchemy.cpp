@@ -2,52 +2,72 @@
 #include "ElectronicConfiguration.h"
 #include "Element.h"
 #include "Math.h"
+#include "TextArea.h"
 
 extern "C" {
 	
 	#include "fxlib.h"
 
+	void printInformation(Element& e, TextArea& t)
+	{
+		t.setCursor(1, 2);
+		t.printString("P:");
+		t.printNumber(e.getPeriod());
+		t.printString(" G:");
+		t.printNumber(e.getGroup());
+
+		t.setCursor(10, 2);
+		t.printString("R:");
+		t.printNumber(e.getRadius());
+		t.setCursor(16, 2);
+		t.printString("a:");
+		t.printNumber(e.getShielding());
+		t.setCursor(1, 3);
+		t.printString("Z");
+		String asterisc = "*";
+		t.printExponent(asterisc);
+		t.printString(":");
+		t.printNumber(e.getEffectiveNuclearCharge());
+
+		t.setCursor(10, 3);
+		t.printString("IE:");
+		t.printNumber(e.getIonizationEnergy());
+		t.setCursor(1, 4);
+		t.printString("EA:");
+		t.printNumber(e.getElectronAffinity());
+		t.setCursor(10, 4);
+		t.printString("X:");
+		t.printNumber(e.getElectroNegativity(), 2);
+
+		ElectronicConfiguration ec = e.getElectronicConfiguration();
+
+		t.setCursor(1, 5);
+		ec.printReduced(t);
+
+		t.setCursor(1, 6);
+		ec.printExtended(t);
+	}
+
 	int AddIn_main(int isAppli, unsigned short OptionNum)
 	{
 		unsigned int key;
 
+		Element e(86, -25);
+
 		Display::clear();
+		TextArea t(1, 1);
 
-		Element e(12, -1);
+		t.printString("Z:");
+		t.printNumber(e.getAtomicNumber());
+		t.setCursor(7, 1);
+		t.printString("Charge:+10");
+		t.setCursor(18, 1);
+		t.printElement(e);
 
-		Display::locate(1, 1);
-		String symbol = e.getSymbol();
-		Display::printString(symbol);
+		printInformation(e, t);
 
-		int charge = e.getCharge();
-		if(charge != 0)
-		{
-			String exp = String::fromNumber(Math::abs(charge));
-		
-			if(charge < 0)
-			{
-				exp.push('-');
-			}
-			else
-			{
-				exp.push('+');
-			}
-				
-			Display::printExponent(3, 1, exp);
-		}
 
-		Display::locate(1, 2);
-		Display::printNumber(e.getRadius());
-
-		Display::locate(1, 3);
-		Display::printNumber(e.getIonizationEnergy());
-
-		Display::locate(1, 4);
-		Display::printNumber(e.getElectronAffinity());
-
-		Display::locate(1, 5);
-		Display::printNumber(e.getElectroNegativity());
-
+		//Display::drawLine(0, 8, 127, 8);
 		while (1) {
 			GetKey(&key);
 		}

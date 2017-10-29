@@ -11,6 +11,11 @@ void Display::locate(int x, int y)
 	::locate(x, y);
 }
 
+void Display::drawLine(int x1, int y1, int x2, int y2)
+{
+	Bdisp_DrawLineVRAM(x1, x2, y1, y2);
+}
+
 void Display::printNumber(int number)
 {
 	String s = String::fromNumber(number);
