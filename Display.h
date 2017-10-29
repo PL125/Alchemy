@@ -21,5 +21,6 @@ public:
 
 	static void printStringReverse(String& str);
 	static void printCharacterReverse(char chargeSign);
+	static void clearArea(int x1, int y1, int x2, int y2);
 };
 

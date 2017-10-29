@@ -6,14 +6,14 @@
 Input::Input(int x, int y, int width)
 	: x(x), y(y), width(width), count(0), resetNextFocus(false)
 {
-	for(int i = 0; i < width; i++)
+	for (int i = 0; i < width; i++)
 	{
 		input.push(' ');
 	}
 }
 
 void Input::onKeyPressed(unsigned key)
-{	
+{
 	KeyType::Type type = Keyboard::getKeyType(key);
 	if (resetNextFocus && type != KeyType::Other)
 	{
@@ -25,14 +25,14 @@ void Input::onKeyPressed(unsigned key)
 		}
 	}
 
-	if(type == KeyType::Del)
+	if (type == KeyType::Del)
 	{
 		count = Math::max(0, count - 1);
 		input[count] = ' ';
 	}
-	else if(type == KeyType::Number)
+	else if (type == KeyType::Number)
 	{
-		if(count < width)
+		if (count < width)
 		{
 			input[count] = Keyboard::getDigit(key) + '0';
 			count++;
@@ -45,7 +45,6 @@ void Input::onKeyPressed(unsigned key)
 
 void Input::focus()
 {
-
 	Display::locate(x, y);
 	Display::printStringReverse(input);
 }
@@ -58,7 +57,7 @@ void Input::unfocus()
 
 void Input::setDefault(const String& defaultString)
 {
-	for(int i = 0; i < defaultString.getLength(); i++)
+	for (int i = 0; i < defaultString.getLength(); i++)
 	{
 		input[i] = defaultString[i];
 	}
@@ -72,3 +71,24 @@ bool Input::empty() const
 	return count == 0;
 }
 
+int Input::getNumber() const
+{
+	int numberLength = input.getLength();
+	for (int i = 0; i < input.getLength(); i++)
+	{
+		if (input[i] == ' ')
+		{
+			numberLength = i;
+			break;
+		}
+	}
+
+	int result = 0;
+	for(int i = 0; i < numberLength; i++)
+	{
+		int exp = numberLength - i - 1;
+		result += Math::pow(10, exp) * (input[i] - '0');
+	}
+	
+	return result;
+}

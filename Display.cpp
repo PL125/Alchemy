@@ -99,3 +99,13 @@ void Display::printCharacterReverse(char chargeSign)
 	char buffer[2] = { chargeSign, 0 };
 	PrintRevC((const unsigned char*)buffer);
 }
+
+void Display::clearArea(int x1, int y1, int x2, int y2)
+{
+	DISPBOX area;
+	area.left = x1;
+	area.top = y1;
+	area.right = x2;
+	area.bottom = y2;
+	Bdisp_AreaClr_VRAM(&area);
+}

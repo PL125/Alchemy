@@ -53,6 +53,11 @@ int Element::getGroup() const
 
 float Element::getShielding() const
 {
+	if(electronNumber == 0)
+	{
+		return 0;
+	}
+
 	//Take account of charges in calculating what are kernel electrons
 	Element e(electronNumber);
 

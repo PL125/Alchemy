@@ -5,6 +5,7 @@
 #include "TextArea.h"
 #include "Input.h"
 #include "Keyboard.h"
+#include <keybios.h>
 
 extern "C" {
 	
@@ -12,6 +13,10 @@ extern "C" {
 
 	void printInformation(Element& e, TextArea& t)
 	{
+
+		Display::clearArea(0, 8, 127, 63);
+		t.setCursor(18, 1);
+		t.printString("     ");
 		t.setCursor(18, 1);
 		t.printElement(e);
 
@@ -102,6 +107,20 @@ extern "C" {
 				Display::locate(14, 1);
 				Display::printCharacterReverse(chargeSign);
 			}
+			else if(type == KeyType::Exe && !inputZ.empty() && !chargeInput.empty())
+			{
+				int sign = chargeSign == '-' ? -1 : 1;
+				
+				int charge = chargeInput.getNumber() * sign;
+				int z = inputZ.getNumber();
+
+				if(z > 0 && z <= 118 && z - charge >= 0)
+				{
+					Element e(z, charge);
+					printInformation(e, t);
+				}
+
+			}
 			else if(key == 0x89)
 			{
 				//Plus
@@ -121,6 +140,10 @@ extern "C" {
 					Display::locate(14, 1);
 					Display::printCharacterReverse(chargeSign);
 				}
+			}
+			else if (key == KEY_CTRL_EXIT)
+			{
+				break;
 			}
 			else
 			{

@@ -19,4 +19,15 @@ public:
 	{
 		return n < 0 ? -n : n;
 	}
+
+	template <class T>
+	static T pow(T n, T exp)
+	{
+		T result = 1;
+		for(T i = 0; i < exp; ++i)
+		{
+			result *= n;
+		}
+		return result;
+	}
 };

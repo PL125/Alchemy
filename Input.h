@@ -21,5 +21,6 @@ public:
 	void setDefault(const String& defaultString);
 
 	bool empty() const;
+	int getNumber() const;
 };
 
